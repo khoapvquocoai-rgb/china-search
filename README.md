@@ -24,7 +24,7 @@ Unlike v2.0 which was tied to HPrivate Project , **v3.0 is project-agnostic**:
 
 ```bash
 # Generate workflow for any project
-python generate_workflow_json.py --project "MyDataCenter" --output workflow.json
+python generate_workflow_json.py --project "MyProject" --output workflow.json
 
 # Use config file for complex setups
 python generate_workflow_json.py --config my-project.json --output workflow.json
@@ -73,7 +73,7 @@ python generate_context_aware_recommendations.py
 cd scripts
 
 # Simple: Just provide project name
-python generate_workflow_json.py --project "MyDataCenter" --output workflow.json
+python generate_workflow_json.py --project "MyProject" --output workflow.json
 
 # Advanced: Customize document types
 python generate_workflow_json.py \

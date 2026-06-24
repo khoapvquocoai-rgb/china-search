@@ -277,7 +277,7 @@ See [LICENSE](LICENSE) for full terms.
 
 This skill evolved through:
 
-- **Real-world testing** on HN-DC03 data center project
+- **Real-world testing** on More then 50 projects.
 - **Community feedback** comparing multiple AI assistant approaches
 - **Iterative improvements** based on production deployments
 - **Open source community** for Dify, Weaviate, and related tools

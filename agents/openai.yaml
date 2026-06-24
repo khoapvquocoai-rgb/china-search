@@ -1,0 +1,5 @@
+interface:
+  display_name: "China Search"
+  short_description: "No-budget lawful China mainland search, translation, and evidence workflow."
+  icon: "🔎"
+  brand_color: "#C8102E"

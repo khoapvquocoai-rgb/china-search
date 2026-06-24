@@ -1,0 +1,6 @@
+﻿Repo,Stars,Focus,License,Best For,Learning Curve,Deployment,URL
+Dify,146429,Agentic workflow platform,MIT (check commercial terms),Enterprise production deployments,Medium,"Docker/K8s, Cloud SaaS available",https://github.com/langgenius/dify
+FastGPT,28600,Knowledge-based RAG platform,Apache-2.0 (commercial check needed),Knowledge-based applications,Low-Medium,"Docker, Self-hosted or SaaS",https://github.com/labring/FastGPT
+Qwen-Agent,16600,Alibaba/Qwen ecosystem agent framework,Apache-2.0,"Qwen-based applications, MCP workflows",Medium,"Python package, Easy local deployment",https://github.com/QwenLM/Qwen-Agent
+MS-Agent,4300,ModelScope Agent Skills framework,Apache-2.0,"Research, skill-based agents, cutting-edge features",Medium-High,"Python package, ModelScope cloud",https://github.com/modelscope/ms-agent
+AgentScope,27100,Multi-agent framework from Alibaba,Apache-2.0,"Multi-agent systems, research, complex orchestration",High,"Python package, Scalable to K8s",https://github.com/modelscope/agentscope

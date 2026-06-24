@@ -1,0 +1,16 @@
+# Code Owners for china-search skill
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for entire repo
+* @khoapvquocoai-rgb
+
+# Scripts require maintainer review
+/scripts/ @khoapvquocoai-rgb
+
+# Documentation can be reviewed by community
+/references/ @khoapvquocoai-rgb
+
+# Security-sensitive files
+SKILL.md @khoapvquocoai-rgb
+references/risk-assessment-checklist.md @khoapvquocoai-rgb
+references/compliance-boundaries.md @khoapvquocoai-rgb

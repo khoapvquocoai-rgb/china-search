@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "PROJECT_NAME",
+    "description": "Brief project description",
+    "industry": "data-center",
+    "location": "Vietnam"
+  },
+  "document_types": {
+    "technical": [
+      "HSYC",
+      "HSMT",
+      "SPECIFICATION",
+      "STANDARD",
+      "tiêu chuẩn",
+      "bản vẽ",
+      "drawing"
+    ],
+    "legal": [
+      "CONTRACT",
+      "AGREEMENT",
+      "MOU",
+      "hợp đồng",
+      "thỏa thuận"
+    ],
+    "procurement": [
+      "VENDOR_DATABOOK",
+      "DATASHEET",
+      "QUOTE",
+      "vendor datasheet",
+      "hồ sơ nhà cung cấp",
+      "báo giá"
+    ],
+    "meeting": [
+      "MINUTES",
+      "RFI",
+      "ACTION_LOG",
+      "biên bản họp",
+      "biên bản",
+      "yêu cầu làm rõ"
+    ]
+  },
+  "knowledge_bases": {
+    "technical": "KB-Technical",
+    "legal": "KB-Legal",
+    "procurement": "KB-Procurement",
+    "meeting": "KB-Meeting"
+  },
+  "risk_thresholds": {
+    "low": 30,
+    "medium": 60,
+    "high": 80,
+    "critical": 100
+  },
+  "output_templates": {
+    "executive_brief": "templates/executive-brief.jinja2",
+    "issue_log": "templates/issue-log.jinja2",
+    "rfi_list": "templates/rfi-list.jinja2"
+  },
+  "branches": {
+    "enabled": ["technical", "legal", "procurement", "meeting"],
+    "default": "technical"
+  },
+  "metadata": {
+    "version": "3.0",
+    "created_by": "china-search v3.0",
+    "template_version": "1.0"
+  }
+}

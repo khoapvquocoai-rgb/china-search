@@ -1,0 +1,32 @@
+{
+  "description": "Default document type mappings for multi-branch workflow routing",
+  "version": "3.0",
+  "mappings": {
+    "technical": {
+      "vietnamese": ["HSYC", "HSMT", "tiêu chuẩn", "bản vẽ", "quy cách kỹ thuật"],
+      "english": ["SPECIFICATION", "STANDARD", "DRAWING", "TECH_SPEC"],
+      "description": "Technical documents including specifications, standards, and drawings"
+    },
+    "legal": {
+      "vietnamese": ["hợp đồng", "thỏa thuận", "hiệp định"],
+      "english": ["CONTRACT", "AGREEMENT", "MOU"],
+      "description": "Legal documents including contracts and agreements"
+    },
+    "procurement": {
+      "vietnamese": ["hồ sơ nhà cung cấp", "datasheet", "báo giá", "xác nhận kỹ thuật"],
+      "english": ["VENDOR_DATABOOK", "DATASHEET", "QUOTE", "TECHNICAL_SUBMITTAL"],
+      "description": "Procurement documents from vendors and suppliers"
+    },
+    "meeting": {
+      "vietnamese": ["biên bản họp", "biên bản", "RFI", "yêu cầu làm rõ"],
+      "english": ["MINUTES", "RFI", "ACTION_LOG", "MEETING_NOTES"],
+      "description": "Meeting minutes, RFIs, and action logs"
+    }
+  },
+  "usage_notes": [
+    "Add custom document types to project-specific config files",
+    "Keep this file as the default fallback",
+    "Document types are case-insensitive in matching",
+    "Supports both Vietnamese and English terminology"
+  ]
+}

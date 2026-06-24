@@ -15,13 +15,6 @@
 
 ### 🎯 Multi-Project Support (NEW!)
 
-Unlike v2.0 which was tied to HPrivate Project , **v3.0 is project-agnostic**:
-
-- ✅ **Dynamic configuration**: Generate workflows for ANY project via CLI or config files
-- ✅ **Template-based prompts**: All examples use `[PROJECT_NAME]` placeholder
-- ✅ **Reusable across projects**: Same codebase, different configurations
-- ✅ **Backward compatible**: Still works with HPrivate Project  via `--project` flag
-
 ```bash
 # Generate workflow for any project
 python generate_workflow_json.py --project "MyProject" --output workflow.json

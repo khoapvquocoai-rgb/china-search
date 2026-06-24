@@ -15,12 +15,12 @@
 
 ### 🎯 Multi-Project Support (NEW!)
 
-Unlike v2.0 which was tied to HN-DC03, **v3.0 is project-agnostic**:
+Unlike v2.0 which was tied to HPrivate Project , **v3.0 is project-agnostic**:
 
 - ✅ **Dynamic configuration**: Generate workflows for ANY project via CLI or config files
 - ✅ **Template-based prompts**: All examples use `[PROJECT_NAME]` placeholder
 - ✅ **Reusable across projects**: Same codebase, different configurations
-- ✅ **Backward compatible**: Still works with HN-DC03 via `--project` flag
+- ✅ **Backward compatible**: Still works with HPrivate Project  via `--project` flag
 
 ```bash
 # Generate workflow for any project
@@ -267,13 +267,13 @@ See [full risk checklist](references/risk-assessment-checklist.md) for 8-categor
 
 ## 📊 Real-World Use Cases
 
-### Case Study 1: HN-DC03 Data Center Project (Original v2.0)
+### Case Study 1: HPrivate Project  Data Center Project (Original v2.0)
 
 **Challenge:** Review diverse documents (HSYC specs, vendor datasheets, contracts, meeting minutes) with accurate domain-specific analysis.
 
 **Solution (v3.0):**
 ```bash
-python generate_workflow_json.py --project "HN-DC03" --output workflow.json
+python generate_workflow_json.py --project "HPrivate Project " --output workflow.json
 ```
 
 **Results:**
@@ -390,7 +390,7 @@ See [LICENSE](LICENSE) for full terms.
 
 This skill evolved through:
 
-- **Real-world testing** on HN-DC03 data center project (v2.0)
+- **Real-world testing** on HPrivate Project  data center project (v2.0)
 - **Multi-project deployments** demonstrating reusability (v3.0)
 - **Community feedback** comparing multiple AI assistant approaches
 - **Iterative improvements** based on production deployments
@@ -420,7 +420,7 @@ Special thanks to users who provided detailed feedback on:
 - ✅ **Multi-project support**: Dynamic configuration via CLI and config files
 - ✅ **Template-based prompts**: All `[PROJECT_NAME]` placeholders
 - ✅ **Config file support**: `project-template.json` for complex setups
-- ✅ **Backward compatible**: Still works with HN-DC03
+- ✅ **Backward compatible**: Still works with HPrivate Project 
 - ✅ **Customizable document types**: No longer fixed to HSYC/HSMT
 - ✅ **Industry-specific tuning**: Manufacturing, construction, data-center presets
 
@@ -432,7 +432,7 @@ Special thanks to users who provided detailed feedback on:
 - ✅ Domain-specific prompts
 - ✅ Context-aware recommendation engine
 - ✅ Comprehensive security guides
-- ⚠️ **Hardcoded HN-DC03 references** (fixed in v3.0)
+- ⚠️ **Hardcoded HPrivate Project  references** (fixed in v3.0)
 
 ### v1.0 (2026-06-24 earlier)
 - ✅ Basic search matrix generation

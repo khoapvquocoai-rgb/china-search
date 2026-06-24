@@ -14,7 +14,7 @@
 
 Unlike generic search tools, **china-search v2.0** provides:
 
-- 🎯 **Multi-Branch Workflows**: Intelligent IF/ELSE routing by document type (HSYC, contracts, vendors, meetings)
+- 🎯 **Multi-Branch Workflows**: Intelligent IF/ELSE routing by document type (Bidding Documents, contracts, vendors, meetings)
 - 🔒 **Knowledge Base Segregation**: Separate KBs per domain (Technical/Legal/Procurement/Meeting) for higher accuracy
 - 📊 **Quantitative Risk Scoring**: 0-100 scale with Go/No-Go decisions (not binary approval gates)
 - 📝 **Jinja2 Template Outputs**: Structured, consistent formatting (not LLM-generated)
@@ -45,7 +45,7 @@ cd scripts
 python generate_context_aware_recommendations.py
 
 # Or generate specific workflow
-python generate_workflow_json.py --project "HN-DC03" --output workflow.json
+python generate_workflow_json.py --project "Private" --output workflow.json
 
 # Import into Dify:
 # 1. Open Dify → Studio → Create from JSON
@@ -95,7 +95,7 @@ Instead of single linear flows, design branching logic:
 User Input → Doc Extractor → Parameter Extractor (JSON)
     ↓
 IF/ELSE Router:
-├─ IF "HSYC/HSMT" → Technical Review Branch
+├─ IF "Bidding Documents/HSMT" → Technical Review Branch
 ├─ IF "contract" → Legal Review Branch  
 ├─ IF "vendor/datasheet" → Procurement Review Branch
 ├─ IF "meeting/RFI" → Issue/Action Review Branch
@@ -184,9 +184,9 @@ See [full risk checklist](references/risk-assessment-checklist.md) for 8-categor
 
 ## 📊 Real-World Use Cases
 
-### Case Study: HN-DC03 Data Center Project
+### Case Study: More then 50 Projects
 
-**Challenge:** Review diverse documents (HSYC specs, vendor datasheets, contracts, meeting minutes) with accurate domain-specific analysis.
+**Challenge:** Review diverse documents (Bidding Documents specs, vendor datasheets, contracts, meeting minutes) with accurate domain-specific analysis.
 
 **Solution:**
 - Created 4 segregated Knowledge Bases (Technical, Legal, Procurement, Meeting-RFI)

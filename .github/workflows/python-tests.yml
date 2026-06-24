@@ -1,0 +1,180 @@
+name: Python Tests & Quality Checks
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  release:
+    types: [ published ]
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 black mypy pytest
+    
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 scripts/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+    - name: Check code formatting with black
+      run: |
+        black --check scripts/
+    
+    - name: Type checking with mypy
+      run: |
+        mypy scripts/ --ignore-missing-imports || true
+    
+    - name: Syntax verification
+      run: |
+        python3 -m py_compile scripts/*.py
+        echo "✅ All Python scripts syntax verified"
+    
+    - name: Test workflow generation
+      run: |
+        cd scripts
+        python generate_workflow_json.py --project "TestProject" --output test-workflow.json
+        python -c "import json; json.load(open('test-workflow.json'))"
+        echo "✅ Workflow generation test passed"
+        rm -f test-workflow.json
+    
+    - name: Test recommendation generator
+      run: |
+        cd scripts
+        echo -e "TestProject\ndata-center\nvendor review\ntechnical\nself-hosted\n\$0\nPoC\nNo\nHSYC,contract" | python generate_context_aware_recommendations.py > /dev/null
+        echo "✅ Recommendation generator test passed"
+    
+    - name: Validate JSON configs
+      run: |
+        python -c "import json; json.load(open('config/project-template.json'))"
+        python -c "import json; json.load(open('config/document-types-default.json'))"
+        echo "✅ JSON config validation passed"
+    
+    - name: Check documentation
+      run: |
+        # Verify required files exist
+        test -f README.md && echo "✅ README.md exists"
+        test -f SKILL.md && echo "✅ SKILL.md exists"
+        test -f CHANGELOG.md && echo "✅ CHANGELOG.md exists"
+        test -f LICENSE && echo "✅ LICENSE exists"
+        
+        # Check for version consistency
+        grep -q "v3.0" README.md && echo "✅ Version consistent in README"
+        grep -q "v3.0" CHANGELOG.md && echo "✅ Version consistent in CHANGELOG"
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Run integration test
+      run: |
+        cd scripts
+        
+        # Test 1: Generate workflow with default settings
+        python generate_workflow_json.py --project "IntegrationTest-DC" --output dc-workflow.json
+        echo "✅ Generated data center workflow"
+        
+        # Test 2: Generate workflow with custom document types
+        python generate_workflow_json.py \
+          --project "IntegrationTest-Manufacturing" \
+          --doc-types "DRAWING,BILL_OF_MATERIALS,VENDOR_QUOTE" \
+          --industry "manufacturing" \
+          --output factory-workflow.json
+        echo "✅ Generated manufacturing workflow"
+        
+        # Test 3: Verify generated workflows are valid JSON
+        python -c "import json; json.load(open('dc-workflow.json'))"
+        python -c "import json; json.load(open('factory-workflow.json'))"
+        echo "✅ All generated workflows are valid JSON"
+        
+        # Test 4: Verify project context is correctly set
+        python -c "
+import json
+with open('dc-workflow.json') as f:
+    wf = json.load(f)
+    assert wf['project_context']['name'] == 'IntegrationTest-DC'
+    print('✅ Project context correctly set')
+"
+        
+        # Cleanup
+        rm -f *.json
+    
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          *.md
+          !README.md
+          !SKILL.md
+          !CHANGELOG.md
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Run Bandit security scan
+      uses: py-actions/bandit@v2.3
+      with:
+        args: -r scripts/
+    
+    - name: Run Safety dependency check
+      run: |
+        pip install safety
+        safety check --full-report || true
+
+  documentation-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Check Markdown links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'no'
+        use-absolute-links: 'yes'
+        config-file: '.github/mlc_config.json'
+
+  notify-on-failure:
+    runs-on: ubuntu-latest
+    needs: [quality-checks, integration-test, security-scan]
+    if: failure()
+    
+    steps:
+    - name: Send failure notification
+      run: |
+        echo "⚠️ Tests failed! Please check the workflow logs."
+        echo "Failed job details will be available in GitHub Actions tab."
